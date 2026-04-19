@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maternity Care Deserts | The Lotus Assembly</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F3F7FF;
+  color: #0E1E35;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── LINKTREE BANNER ── */
+.lt-banner {
+  background: #1A3A6B;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.lt-banner p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+.lt-banner p strong { color: #C2D9FF; }
+.lt-btn {
+  display: inline-block;
+  background: white;
+  color: #1A3A6B;
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.15s;
+}
+.lt-btn:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #1A3A6B 0%, #2A5BA8 55%, #3B7DD8 100%);
+  color: white;
+  padding: 44px 28px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -70px; right: -50px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -90px; left: -50px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.hero-ribbon {
+  display: inline-block;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  margin-bottom: 18px;
+  color: #C2D9FF;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 14px;
+  color: #fff;
+  position: relative;
+}
+.hero h1 span { color: #C2D9FF; }
+.hero p {
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+  color: rgba(255,255,255,0.88);
+  position: relative;
+}
+
+/* ── STAT BAR ── */
+.stat-bar { background: #132D56; display: flex; }
+.stat-item {
+  flex: 1; text-align: center;
+  padding: 16px 8px;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700;
+  color: #C2D9FF; display: block; margin-bottom: 3px;
+}
+.stat-label {
+  font-size: 10.5px; color: rgba(255,255,255,0.65);
+  line-height: 1.35; display: block;
+}
+
+/* ── LAYOUT ── */
+.section { padding: 30px 24px 0; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: #1A3A6B; margin-bottom: 4px;
+}
+.section-sub {
+  font-size: 13px; color: #5A7AAB;
+  margin-bottom: 18px; font-style: italic;
+}
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, #3B7DD8, #C2D9FF, transparent);
+  margin: 28px 24px 0; border-radius: 2px;
+}
+
+/* ── WHAT IS IT ── */
+.what-box {
+  background: white; border-radius: 16px; padding: 22px;
+  border-left: 5px solid #3B7DD8;
+  box-shadow: 0 2px 14px rgba(26,58,107,0.09);
+}
+.what-box p { font-size: 15px; line-height: 1.8; color: #1A2E50; }
+.what-box strong { color: #1A3A6B; }
+
+/* ── ACCESS LEVELS ── */
+.def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.def-card { border-radius: 14px; padding: 16px; border: 2px solid transparent; }
+.def-card.desert { background: #FFECEC; border-color: #E05A5A; }
+.def-card.low    { background: #FFF4E5; border-color: #E8963A; }
+.def-card.mod    { background: #E8F4E8; border-color: #4A9E5A; }
+.def-card.full   { background: #E5F0FF; border-color: #3B7DD8; }
+.def-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+.def-card.desert h3 { color: #B03030; }
+.def-card.low h3    { color: #9B5A10; }
+.def-card.mod h3    { color: #2A6B30; }
+.def-card.full h3   { color: #1A3A6B; }
+.def-card p { font-size: 12px; line-height: 1.55; color: #3A4A5A; }
+
+/* ── WHY MATTERS ── */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.why-card {
+  background: white; border-radius: 14px; padding: 18px 16px;
+  box-shadow: 0 2px 10px rgba(26,58,107,0.08);
+  border-top: 3px solid #3B7DD8;
+}
+.why-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+.why-card h3 { font-size: 14px; font-weight: 600; color: #1A3A6B; margin-bottom: 6px; line-height: 1.3; }
+.why-card p  { font-size: 13px; color: #3A5A8A; line-height: 1.6; }
+
+/* ── RISK FACTS ── */
+.risk-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.risk-card {
+  background: white; border-radius: 14px; padding: 16px 12px;
+  text-align: center; box-shadow: 0 2px 8px rgba(26,58,107,0.08);
+}
+.risk-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; color: #2A5BA8;
+  display: block; margin-bottom: 4px;
+}
+.risk-card p { font-size: 11px; color: #3A5A8A; line-height: 1.5; }
+
+/* ── STATES ── */
+.states-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.state-pill {
+  background: white; border-radius: 12px; padding: 12px 14px;
+  display: flex; align-items: flex-start; gap: 10px;
+  box-shadow: 0 1px 8px rgba(26,58,107,0.07);
+  border: 1px solid #D0E0F8;
+}
+.state-dot { width: 11px; height: 11px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+.state-dot.red   { background: #E05A5A; }
+.state-dot.amber { background: #E8963A; }
+.state-pill .name   { font-size: 13px; font-weight: 600; color: #1A2E50; display: block; line-height: 1.2; margin-bottom: 3px; }
+.state-pill .pct    { font-size: 12px; font-weight: 700; color: #2A5BA8; }
+.state-pill .detail { font-size: 11px; color: #5A7AAB; line-height: 1.4; }
+.legend { display: flex; gap: 18px; margin-bottom: 12px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #5A7AAB; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── WHO IS AFFECTED ── */
+.affected-list { display: flex; flex-direction: column; gap: 10px; }
+.affected-row {
+  background: white; border-radius: 12px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: 0 1px 8px rgba(26,58,107,0.07);
+}
+.affected-icon { font-size: 22px; flex-shrink: 0; }
+.affected-row h4 { font-size: 13px; font-weight: 600; color: #1A3A6B; margin-bottom: 3px; }
+.affected-row p  { font-size: 12px; color: #3A5A8A; line-height: 1.5; }
+
+/* ── ACTIONS ── */
+.action-cards { display: flex; flex-direction: column; gap: 12px; }
+.action-card {
+  background: white; border-radius: 14px; padding: 18px;
+  display: flex; gap: 16px; align-items: flex-start;
+  box-shadow: 0 2px 10px rgba(26,58,107,0.07);
+}
+.action-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #1A3A6B; color: white;
+  font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'Playfair Display', serif;
+}
+.action-card h3 { font-size: 15px; font-weight: 600; color: #1A3A6B; margin-bottom: 5px; }
+.action-card p  { font-size: 13px; color: #3A5A8A; line-height: 1.65; }
+
+/* ── BAND TOGETHER ── */
+.band-card {
+  background: white; border-radius: 16px; padding: 22px;
+  box-shadow: 0 2px 14px rgba(26,58,107,0.09);
+  border-bottom: 4px solid #3B7DD8;
+}
+.band-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: #1A3A6B; margin-bottom: 14px; }
+.band-idea {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid #D0E0F8;
+}
+.band-idea:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.band-emoji { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.band-idea h4 { font-size: 14px; font-weight: 600; color: #1A2E50; margin-bottom: 3px; }
+.band-idea p  { font-size: 13px; color: #3A5A8A; line-height: 1.6; }
+
+/* ── CTA / FORM ── */
+.cta-section {
+  background: linear-gradient(135deg, #1A3A6B, #2A5BA8);
+  margin: 28px 24px 0;
+  border-radius: 20px;
+  padding: 32px 26px;
+  color: white;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: #fff; margin-bottom: 10px; line-height: 1.2;
+}
+.cta-section > p {
+  font-size: 14px; color: rgba(255,255,255,0.82);
+  line-height: 1.7; margin-bottom: 24px;
+}
+.form-input {
+  display: block; width: 100%;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 12px; padding: 13px 16px;
+  color: white; font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none; margin-bottom: 10px;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.5); }
+.form-input:focus { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.22); }
+
+.role-label { font-size: 13px; color: rgba(255,255,255,0.75); text-align: left; margin-bottom: 10px; }
+.role-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 18px; }
+.role-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.28);
+  border-radius: 10px; padding: 11px 8px;
+  color: rgba(255,255,255,0.82); font-size: 12px;
+  cursor: pointer; text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s; line-height: 1.4;
+}
+.role-btn:hover { background: rgba(255,255,255,0.22); color: white; }
+.role-btn.selected { background: white; color: #1A3A6B; border-color: white; font-weight: 600; }
+
+.submit-btn {
+  width: 100%; background: white; color: #1A3A6B;
+  border: none; border-radius: 12px; padding: 15px;
+  font-size: 16px; font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.22); }
+.submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+.success-box {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.36);
+  border-radius: 14px; padding: 22px; display: none;
+}
+.success-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; color: #C2D9FF; margin-bottom: 8px;
+}
+.success-box p { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+.error-msg {
+  background: rgba(255,80,80,0.2);
+  border: 1px solid rgba(255,150,150,0.4);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; color: #FFD0D0;
+  margin-bottom: 12px; display: none; text-align: left;
+}
+
+/* ── LINKTREE FOOTER BUTTON ── */
+.lt-footer {
+  margin: 24px 24px 0;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 22px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(26,58,107,0.08);
+  border: 1px solid #D0E0F8;
+}
+.lt-footer p {
+  font-size: 13px; color: #3A5A8A; margin-bottom: 12px; line-height: 1.5;
+}
+.lt-footer-btn {
+  display: inline-block;
+  background: #1A3A6B;
+  color: white;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.15s;
+}
+.lt-footer-btn:hover { opacity: 0.85; }
+
+/* ── MISC ── */
+.tag {
+  display: inline-block; background: #D8E8FF; color: #1A3A6B;
+  border-radius: 100px; padding: 4px 12px;
+  font-size: 12px; font-weight: 600; margin: 3px 2px;
+}
+.source-note {
+  font-size: 11px; color: #5A7AAB; margin-top: 8px;
+  line-height: 1.6; font-style: italic;
+}
+.footer-note {
+  text-align: center; padding: 24px;
+  font-size: 12px; color: #5A7AAB; line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ribbon">The Lotus Assembly</div>
+  <h1>Millions of Moms<br>Have <span>Nowhere to Go</span></h1>
+  <p>Over a third of U.S. counties have zero hospitals, birth centers, or OB doctors. This is what a maternity care desert is, and it's getting worse. Here's what you need to know, and what we can do.</p>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <span class="stat-num">35%</span>
+    <span class="stat-label">of U.S. counties are<br>maternity care deserts</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">2.3M</span>
+    <span class="stat-label">women of reproductive<br>age live in deserts</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">100+</span>
+    <span class="stat-label">hospital OB units<br>closed since 2022</span>
+  </div>
+</div>
+
+<!-- WHAT IS IT -->
+<div class="section">
+  <div class="section-title">What Is a Maternity Care Desert?</div>
+  <div class="section-sub">In plain terms</div>
+  <div class="what-box">
+    <p>Imagine being pregnant and having <strong>no hospital, no birth center, and no OB doctor</strong> anywhere in your county. That's a maternity care desert. It means when it's time to give birth, or when something goes wrong during your pregnancy, <strong>there is no place nearby to go.</strong> Women in these areas must drive long distances, sometimes over an hour, just to get basic pregnancy check-ups. In an emergency, that drive can cost a mom or baby their life. <strong>Over 1,100 counties across America are in this situation right now.</strong> And the number keeps growing.</p>
+  </div>
+</div>
+
+<!-- ACCESS LEVELS -->
+<div class="section" style="padding-top:24px;">
+  <div class="section-title">The 4 Levels of Maternity Access</div>
+  <div class="section-sub">How the March of Dimes classifies every county in the U.S.</div>
+  <div class="def-grid">
+    <div class="def-card desert">
+      <h3>🚫 Maternity Care Desert</h3>
+      <p>Zero birthing facilities AND zero obstetric clinicians. 35.1% of all U.S. counties.</p>
+    </div>
+    <div class="def-card low">
+      <h3>⚠️ Low Access</h3>
+      <p>One or fewer hospitals, very few OB providers, or high rates of uninsured women.</p>
+    </div>
+    <div class="def-card mod">
+      <h3>🟡 Moderate Access</h3>
+      <p>Some services available but not enough to fully meet community need.</p>
+    </div>
+    <div class="def-card full">
+      <h3>✅ Full Access</h3>
+      <p>Adequate facilities, obstetric providers, and insurance coverage. Far too rare.</p>
+    </div>
+  </div>
+  <p class="source-note">Source: March of Dimes, "Nowhere to Go: Maternity Care Deserts Across the US," 2024 Report.</p>
+</div>
+
+<!-- RISK FACTS -->
+<div class="section" style="padding-top:24px;">
+  <div class="section-title">What the Data Says About Risk</div>
+  <div class="section-sub">Living in a desert isn't just inconvenient. It's dangerous</div>
+  <div class="risk-row">
+    <div class="risk-card">
+      <span class="risk-num">13%</span>
+      <p>higher risk of preterm birth for women in maternity care deserts</p>
+    </div>
+    <div class="risk-card">
+      <span class="risk-num">38 min</span>
+      <p>average drive to nearest birthing hospital from a desert county</p>
+    </div>
+    <div class="risk-card">
+      <span class="risk-num">5.5M</span>
+      <p>women live in counties with no or very limited maternity care access</p>
+    </div>
+  </div>
+  <p class="source-note">Source: March of Dimes 2024 Report; PMC geographic access study.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- STATES -->
+<div class="section">
+  <div class="section-title">States with the Most Maternity Care Deserts</div>
+  <div class="section-sub">Ranked by percentage of counties classified as deserts (March of Dimes 2024)</div>
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#E05A5A;"></div>
+      <span>Over 50% of counties are deserts</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#E8963A;"></div>
+      <span>Elevated: 35 to 50%</span>
+    </div>
+  </div>
+  <div class="states-grid">
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">North Dakota</span>
+        <span class="pct">73.6% of counties</span>
+        <span class="detail">Highest in the nation. Vast rural distances with no OB care</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">South Dakota</span>
+        <span class="pct">57.6% of counties</span>
+        <span class="detail">Native American communities face the most severe access gaps</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">Oklahoma</span>
+        <span class="pct">51.9% of counties</span>
+        <span class="detail">Rural hospital closures have dramatically reduced OB options</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">Missouri</span>
+        <span class="pct">51.6% of counties</span>
+        <span class="detail">More than half of counties have no birthing facility or OB doctor</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">Nebraska</span>
+        <span class="pct">51.3% of counties</span>
+        <span class="detail">High desert rates despite a relatively small total population</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot red"></div>
+      <div>
+        <span class="name">Arkansas</span>
+        <span class="pct">50.7% of counties</span>
+        <span class="detail">Half of counties are deserts; high poverty compounds the risk</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot amber"></div>
+      <div>
+        <span class="name">Alaska</span>
+        <span class="detail">Among the longest average drive times to reach a birthing hospital</span>
+      </div>
+    </div>
+    <div class="state-pill">
+      <div class="state-dot amber"></div>
+      <div>
+        <span class="name">Montana</span>
+        <span class="detail">Highest travel distances nationally; Indigenous women especially impacted</span>
+      </div>
+    </div>
+  </div>
+  <p class="source-note">Source: March of Dimes 2024 MCD Report; PMC geographic access study.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHO IS MOST AFFECTED -->
+<div class="section">
+  <div class="section-title">Who Is Most Affected?</div>
+  <div class="section-sub">These groups face the highest barriers inside maternity care deserts</div>
+  <div class="affected-list">
+    <div class="affected-row">
+      <span class="affected-icon">🌾</span>
+      <div>
+        <h4>Rural women</h4>
+        <p>Maternity care deserts are far more common in rural counties. Women without a car or reliable transportation are the most vulnerable of all.</p>
+      </div>
+    </div>
+    <div class="affected-row">
+      <span class="affected-icon">🪶</span>
+      <div>
+        <h4>American Indian &amp; Alaska Native women</h4>
+        <p>Native women travel an average of 45.9 minutes to reach the nearest OB hospital, more than 3× the national average. In desert counties, that can jump to over 2.5 hours.</p>
+      </div>
+    </div>
+    <div class="affected-row">
+      <span class="affected-icon">💳</span>
+      <div>
+        <h4>Uninsured &amp; low-income women</h4>
+        <p>The rate of uninsured women in maternity care deserts is 2× higher than in areas with full access. No insurance means fewer options and more dangerous delays.</p>
+      </div>
+    </div>
+    <div class="affected-row">
+      <span class="affected-icon">🤰</span>
+      <div>
+        <h4>Women with high-risk pregnancies</h4>
+        <p>Women with diabetes, hypertension, or past pregnancy complications need closer monitoring. In deserts, they often go without care until it becomes an emergency.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ACTIONS -->
+<div class="section">
+  <div class="section-title">What WE Can Do</div>
+  <div class="section-sub">Practical steps every woman can take right now</div>
+  <div class="action-cards">
+    <div class="action-card">
+      <div class="action-num">1</div>
+      <div>
+        <h3>Know your county's access level</h3>
+        <p>Look up your county on the March of Dimes interactive map at marchofdimes.org/maternity-care-deserts-report. Share your results with other women in your community.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">2</div>
+      <div>
+        <h3>Demand telehealth &amp; mobile health expansion</h3>
+        <p>Telehealth prenatal visits are proven to work for routine care. Contact your state legislators and ask them to fund mobile maternal health clinics in underserved areas.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">3</div>
+      <div>
+        <h3>Push for rural hospital protections</h3>
+        <p>Over 100 hospital OB units closed between 2022 and 2024. Ask your congressional rep to support the Rural Maternity and Obstetrics Management Strategies (RMOMS) program.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">4</div>
+      <div>
+        <h3>Support midwife &amp; doula access laws</h3>
+        <p>Expanding the legal scope of midwives and funding community birth centers can fill gaps where hospitals don't exist. Many states still have laws blocking this. Speak up.</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <div class="action-num">5</div>
+      <div>
+        <h3>Volunteer transportation or logistics help</h3>
+        <p>Women in deserts sometimes travel 1 to 3 hours for prenatal appointments. Offer rides, childcare during appointments, or donate to local funds that cover travel costs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BAND TOGETHER -->
+<div class="section">
+  <div class="section-title">How to Band Women Together</div>
+  <div class="section-sub">Turn awareness into a community movement</div>
+  <div class="band-card">
+    <h3>Start a "Desert Watch" network in your area:</h3>
+    <div class="band-idea">
+      <span class="band-emoji">🗺️</span>
+      <div>
+        <h4>Map your community's access gaps</h4>
+        <p>Use the March of Dimes county map to print your area's access level. Host a community meeting to show local women the data and spark real conversation about solutions.</p>
+      </div>
+    </div>
+    <div class="band-idea">
+      <span class="band-emoji">🚗</span>
+      <div>
+        <h4>Start a rides &amp; logistics circle</h4>
+        <p>Organize a network of drivers who volunteer to take pregnant women to prenatal appointments. Pair with a simple group chat and shared calendar. No fancy tech needed.</p>
+      </div>
+    </div>
+    <div class="band-idea">
+      <span class="band-emoji">📲</span>
+      <div>
+        <h4>Create a county-level care resource list</h4>
+        <p>Research every telehealth OB service, federally-qualified health center (FQHC), and mobile clinic available in your county. Update it quarterly and share it everywhere.</p>
+      </div>
+    </div>
+    <div class="band-idea">
+      <span class="band-emoji">✍️</span>
+      <div>
+        <h4>Host a letter-writing or phone-banking day</h4>
+        <p>Gather women and spend one hour contacting your state health department and elected officials. Ask them to protect rural hospital OB units and fund community birth centers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA SIGNUP FORM -->
+<div class="cta-section">
+  <h2>Join The Lotus Assembly</h2>
+  <p>Fill in your info below and I will personally reach out by email to connect you with women in your area, share free resources about maternity care access near you, and let you know how to get involved. You will not be left on a list. You will hear from me.</p>
+
+  <div id="form-area">
+    <div id="error-msg" class="error-msg">Something went wrong. Please check your connection and try again.</div>
+
+    <input class="form-input" type="text"  id="f-name"   placeholder="Your first name" />
+    <input class="form-input" type="email" id="f-email"  placeholder="Your email address" />
+    <input class="form-input" type="text"  id="f-city"   placeholder="Your city &amp; state" />
+    <input class="form-input" type="text"  id="f-county" placeholder="Your county (optional, helps us map gaps!)" />
+
+    <p class="role-label">I want to help by: <span style="color:rgba(255,255,255,0.45); font-size:11px;">(choose all that apply)</span></p>
+    <div class="role-row">
+      <div class="role-btn" onclick="toggleRole(this)">🚗 Providing rides</div>
+      <div class="role-btn" onclick="toggleRole(this)">📚 Sharing resources</div>
+      <div class="role-btn" onclick="toggleRole(this)">🗳️ Advocacy &amp; policy</div>
+      <div class="role-btn" onclick="toggleRole(this)">🤰 Supporting moms</div>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">Count Me In. No Mom Left Behind ♡</button>
+    <p style="font-size:11px; margin-top:12px; color:rgba(255,255,255,0.45);">No spam, ever. Unsubscribe anytime.</p>
+  </div>
+
+  <div class="success-box" id="success">
+    <h3>You're in. Thank you. ♡</h3>
+    <p>You just took a stand for the millions of moms who have nowhere to go. Check your email for resources and how to connect with women in your area who are ready to act.</p>
+    <p style="margin-top:12px;">Share this with 3 women. That's how deserts become communities of care.</p>
+    <div style="margin-top:16px;">
+      <span class="tag">#TheLotusAssembly</span>
+      <span class="tag">#NowhereToGo</span>
+      <span class="tag">#EndCareDeserts</span>
+    </div>
+    <div style="margin-top:16px;">
+      <a href="https://linktr.ee/ladylotuss9" target="_blank" rel="noopener"
+         style="display:inline-block; background:white; color:#1A3A6B; border-radius:10px;
+                padding:10px 22px; font-size:13px; font-weight:700; text-decoration:none;
+                font-family:'DM Sans',sans-serif;">
+        Visit Our Linktree ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- LINKTREE FOOTER CARD -->
+<div class="lt-footer">
+  <p>Join my Discord and socials for all things womanhood. Explore, connect, and get involved through my Linktree. Share it with every woman you know.</p>
+  <a class="lt-footer-btn" href="https://discord.gg/sbne7xQWW" target="_blank" rel="noopener">💬 Join the Discord ↗</a>
+  <br><br>
+  <a class="lt-footer-btn" href="https://linktr.ee/ladylotuss9" target="_blank" rel="noopener" style="background:#F3F7FF; color:#1A3A6B; border:2px solid #1A3A6B;">🌿 Visit linktr.ee/ladylotuss9 ↗</a>
+</div>
+
+<div class="footer-note">
+  <strong>All statistics verified from primary sources:</strong><br>
+  March of Dimes "Nowhere to Go" 2024 Report · PMC Geographic Access Study (PMC11080172)<br>
+  Advisory Board (Oct 2024) · AJPM Focus (May 2025) · CDC Division of Reproductive Health<br><br>
+  <span class="tag">#TheLotusAssembly</span>
+  <span class="tag">#NowhereToGo</span>
+  <span class="tag">#EndCareDeserts</span>
+  <span class="tag">#MaternalJustice</span><br><br>
+  Print this. Post this. Share this. Every county counts.
+</div>
+
+<script>
+// ── PASTE YOUR DEPLOYED APPS SCRIPT URL BELOW AFTER YOU DEPLOY ──
+// It will look like: https://script.google.com/macros/s/XXXXXXXX/exec
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxn7zM3jNUGYcGts9S1MEGKyXwQYdryn8kppBhha3AbXYreDuMjaHTImy5e7RBz56WOqw/exec";
+
+// ── SECRET TOKEN — must match exactly what is in your Apps Script ──
+const SECRET_TOKEN = "LadyLotus2024CircleOfMamas!Secure";
+
+// ── MAX FIELD LENGTH — matches server-side limit ──
+const MAX_LEN = 200;
+
+function toggleRole(el) {
+  el.classList.toggle('selected');
+}
+
+// Strip dangerous characters before sending
+function sanitize(str) {
+  return str.replace(/<[^>]*>/g, "").replace(/[<>'"]/g, "").trim();
+}
+
+async function handleSubmit() {
+  const errBox = document.getElementById('error-msg');
+  errBox.style.display = 'none';
+
+  const name   = sanitize(document.getElementById('f-name').value);
+  const email  = sanitize(document.getElementById('f-email').value).toLowerCase();
+  const city   = sanitize(document.getElementById('f-city').value);
+  const county = sanitize(document.getElementById('f-county').value);
+
+  // Required field check
+  if (!name || !email) {
+    errBox.textContent = 'Please enter your first name and email to join!';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  // Email format check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    errBox.textContent = 'Please enter a valid email address.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  // Length check
+  for (const [label, val] of [['Name', name], ['Email', email], ['City', city], ['County', county]]) {
+    if (val.length > MAX_LEN) {
+      errBox.textContent = label + ' is too long. Please shorten it and try again.';
+      errBox.style.display = 'block';
+      return;
+    }
+  }
+
+  const selectedRoles = [...document.querySelectorAll('.role-btn.selected')]
+    .map(b => sanitize(b.textContent)).join(', ');
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token: SECRET_TOKEN,
+        name, email, city, county,
+        roles: selectedRoles,
+        source: "Maternity Care Desert Poster"
+      })
+    });
+
+    // no-cors means we cannot read the response. Assume success if no error thrown.
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Count Me In. No Mom Left Behind ♡';
+    errBox.textContent = 'Something went wrong. Please check your connection and try again.';
+    errBox.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
